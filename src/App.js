@@ -9,7 +9,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       flats: [],
-      selectFlat: null
+      allFlats: [],
+      selectFlat: null,
+      search: ""
     };
   }
 
@@ -18,7 +20,10 @@ class App extends React.Component {
     fetch(url)  // AJAX
       .then(response => response.json())
       .then((data)  => {
-        this.setState({flats: data});
+        this.setState({
+          flats: data,
+          allFlats: data
+        });
       })
   };
 
@@ -31,6 +36,14 @@ class App extends React.Component {
 
   }
 
+  handleSearch = (event) => {
+    console.log(event);
+    this.setState({
+      search: event.target.value,
+      flats: this.state.allFlats.filter((flat) =>
+        new RegExp(event.target.value, "i").exec(flat.name))
+    })
+  }
 
   render() {
     let center = {
@@ -45,10 +58,17 @@ class App extends React.Component {
 
       }
     }
+
     return (
       <div className="app">
         <div className="main">
-         <div className="search"></div>
+         <div className="search">
+         <input
+          type="text"
+          placeholder="Search ..."
+          value={this.state.search}
+          onChange={this.handleSearch} />
+         </div>
 
           <div className="flats">
             {this.state.flats.map((flat) => {
