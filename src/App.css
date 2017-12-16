@@ -33,3 +33,18 @@
   top: 0;
   background: white;
 }
+
+
+
+@media (device-width: 800px) { /* Breite entspricht genau 800 Pixel */ }
+@media (min-device-width: 800px) { /* Breite beträgt mindestens 800px */ }
+@media (max-device-width: 599px) {
+ /* Breite beträgt höchstens 1024px */
+  .main {
+    flex-basis: 100%;
+  }
+
+  .map {
+    display: none;
+  }
+}
