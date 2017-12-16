@@ -84,7 +84,7 @@ class App extends React.Component {
 
         <div className="map">
           <GoogleMapReact
-            apiKey = {AIzaSyClSzD-VLSQ26x-TWN983NfDchlFVPG8qI}
+            apiKey = "AIzaSyClSzD-VLSQ26x-TWN983NfDchlFVPG8qI"
             center={center}
             zoom={14 }
           >
