@@ -6,7 +6,6 @@
   flex-basis: 60%;
   display: flex;
   flex-direction: column;
-  /*background-color: red;*/
 }
 
 .map {
@@ -14,7 +13,8 @@
   height: 100vh;
   top: 0;
   position: sticky;
-  /*background-color: blue;*/
+
+
 
 }
 
@@ -41,10 +41,16 @@
 @media (max-device-width: 599px) {
  /* Breite beträgt höchstens 1024px */
   .main {
-    flex-basis: 100%;
+    /*flex-basis: 100%;*/
+
   }
 
   .map {
-    display: none;
+    /*display: none;*/
+    height: 300px;
+  }
+
+  .app {
+    display: block;
   }
 }

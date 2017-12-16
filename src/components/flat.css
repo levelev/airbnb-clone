@@ -22,3 +22,12 @@
   margin-top: 10px;
   font-weight: bold;
 }
+
+
+@media (max-device-width: 599px) {
+ /* Breite beträgt höchstens 1024px */
+  .flat {
+  flex-basis: calc(100% - 20px);
+  margin: 10px;
+  }
+}
