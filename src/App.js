@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import GoogleMapReact from 'google-map-react';
 import './App.css';
 import Flat from './components/flat';
 
@@ -16,13 +16,22 @@ class App extends React.Component {
     fetch(url)  // AJAX
       .then(response => response.json())
       .then((data)  => {
-        this.setState({
-        flats: data
-        });
+        this.setState({flats: data});
       })
-  }
+    };
+
+
+
+
+
+
+
 
   render() {
+    const center = {
+    lat: 48.8566,
+    lng: 2.3522
+     }
     return (
       <div className="app">
         <div className="main">
@@ -38,6 +47,12 @@ class App extends React.Component {
         </div>
 
         <div className="map">
+          <GoogleMapReact
+            center={center}
+            zoom={14}
+          >
+          </GoogleMapReact>
+
         </div>
       </div>
       );
