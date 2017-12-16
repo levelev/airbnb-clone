@@ -1,4 +1,4 @@
- import React, { Component } from 'react';
+ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import './App.css';
 import Flat from './components/flat';
@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      flats: []
+      flats: [],
+      selectFlat: null
     };
   }
 
@@ -19,20 +20,31 @@ class App extends React.Component {
       .then((data)  => {
         this.setState({flats: data});
       })
-    };
+  };
 
 
+  selectFlat = (flat) => {
+    console.log(flat);
+    this.setState({
+      selectFlat: flat
+    })
 
-
-
-
+  }
 
 
   render() {
-    const center = {
+    let center = {
     lat: 48.8566,
     lng: 2.3522
      }
+
+    if (this.state.selectFlat) {
+      center = {
+        lat: this.state.selectFlat.lat,
+        lng: this.state.selectFlat.lng
+
+      }
+    }
     return (
       <div className="app">
         <div className="main">
@@ -40,7 +52,10 @@ class App extends React.Component {
 
           <div className="flats">
             {this.state.flats.map((flat) => {
-              return <Flat flat={flat} />
+              return <Flat
+                key={flat.name}
+                flat={flat}
+                selectFlat={this.selectFlat} />
 
             })}
 
@@ -50,11 +65,17 @@ class App extends React.Component {
         <div className="map">
           <GoogleMapReact
             center={center}
-            zoom={11}
+            zoom={14 }
           >
 
           {this.state.flats.map((flat) => {
-              return <Marker lat={flat.lat} lng={flat.lng} text={flat.price}/>
+              return <Marker
+              key={flat.name}
+              lat={flat.lat}
+              lng={flat.lng}
+              text={flat.price + " €"}
+              selected={flat === this.state.selectFlat}
+              />
 
             })}
           </GoogleMapReact>
